@@ -1,4 +1,6 @@
 import pandas as pd
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
 
 data = pd.read_csv('[name file]') #input your name file
 
@@ -12,7 +14,7 @@ data.info() #describe your data
 data = data[data['void'] == 0]
 data.info()
 
-basket = data.groupby(['ticket_id','menu_name'])['authorized'].sum().unstack().reset_index().fillna(0).set_index('ticket_id')
+basket = data.groupby(['ticket_id','menu_name'])['authorized'].sum().unstack().reset_index().fillna(0).set_index('ticket_id') #pivot your data
 basket
 
 def encode(x):
